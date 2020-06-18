@@ -33,6 +33,55 @@ def create_db():
     return True
 
 
+def login_attempt(username, password):
+    '''
+    Attempt to login
+    Returns True if user/pass combo is correct
+    '''
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+
+    c.execute('SELECT password FROM users WHERE username = ?', (username,))
+    p = c.fetchone()
+
+    if p is None:
+        return False
+
+    return password == p[0]
+
+
+def user_exists(username):
+    '''
+    True if username is in DB
+    '''
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+
+    c.execute('SELECT 1 FROM users WHERE username = ?', (username,))
+    check = c.fetchone()
+
+    return check is not None
+
+
+def signup_attempt(username, password):
+    '''
+    Attempt to sign up
+    Return True if username does not exist and has been added
+    '''
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+
+    if user_exists(username):
+        return False
+
+    c.execute('INSERT INTO users VALUES(?, ?)', (username, password))
+
+    db.commit()
+    db.close()
+
+    return True
+
+
 def create_game(host):
     '''
     Creates a game given a inital host username
@@ -158,21 +207,26 @@ def get_move(game_id):
 
 
 def test():
-    create_game('Joan')
-    join_game('Kevin')
+    # create_game('Joan')
+    # join_game('Kevin')
+    #
+    # add_word('Cheetos', 'Food')
+    # add_word('Cheetos', 'Chips')
+    # add_word('Cheetah', 'Animals')
+    # add_word('Lion', 'Animals')
+    #
+    # check_word('Cheetos', 'Food')
+    # check_word('Cheetos', 'Chips')
+    # check_word('Cheetos', 'Bees')
+    # check_word('Lion', 'Animals')
+    #
+    # get_words('Animals')
+    # get_words('Food')
 
-    add_word('Cheetos', 'Food')
-    add_word('Cheetos', 'Chips')
-    add_word('Cheetah', 'Animals')
-    add_word('Lion', 'Animals')
-
-    check_word('Cheetos', 'Food')
-    check_word('Cheetos', 'Chips')
-    check_word('Cheetos', 'Bees')
-    check_word('Lion', 'Animals')
-
-    get_words('Animals')
-    get_words('Food')
+    signup_attempt('Joan', 'password')
+    signup_attempt('Joan', 'pee')
+    user_exists('Joan')
+    user_exists('Kevin')
 
 
 if __name__ == '__main__':
