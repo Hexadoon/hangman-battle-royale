@@ -69,6 +69,7 @@ function printState() {
 	console.log();
 }
 
+/*
 function test() {
 	gameStart("Joan Beans Sammy Oldies Jake Lozenge");
 	printState();
@@ -97,5 +98,6 @@ function test() {
 	updateState('1z2');
 	printState();
 }
+*/
 
-test();
+//test();
