@@ -12,10 +12,33 @@
 </head>
 
 <body>
-  insert game stuff here
-
+	<!-- the most basic possible UI I could make just as a placeholder--> 
+  <table>
+			<tr><th style="text-align:center">HUD</th></tr>
+		<tr>
+			<td rowspan="2">
+				<input type="text" id="guess"><br>
+				<button onclick="getAttackMessage()">
+					attack
+				</button>
+				<p id="message"></p>
+			</td>
+			<td onclick="setTarget(1)">Player 1</td>
+			<td onclick="setTarget(2)">Player 2</td>
+			<td onclick="setTarget(3)">Player 3</td>
+			<td onclick="setTarget(4)">Player 4</td>
+		</tr>
+		<tr>
+			<td onclick="setTarget(5)">Player 5</td>
+			<td onclick="setTarget(6)">Player 6</td>
+			<td onclick="setTarget(7)">Player 7</td>
+			<td onclick="setTarget(8)">Player 8</td>
+		</tr>
+  </table>
+  <br>
   <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script type="text/javascript" src="../util/gameLogic.js"></script>
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>

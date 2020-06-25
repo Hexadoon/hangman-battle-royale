@@ -12,6 +12,9 @@ var State = {
 	playerInfo: []	
 }
 
+var currPlayer = 0;
+var currTarget = 0;
+
 // playerData should include the name and word of all players, separated by spaces
 // eg: Joan Beans Sammy Oldies Jake Lozenge 
 function gameStart(playerData) {
@@ -44,6 +47,9 @@ function updateState(guessMessage) {
 	if(guessMessage.length != 3) {
 		return 'invalid message';
 	}
+	if(guessMessage[0] == guessMessage[2]) {
+		return 'self guess';
+	}
 	
 	offense = State.playerInfo[guessMessage[0]-1];
 	letter = guessMessage[1];
@@ -53,12 +59,22 @@ function updateState(guessMessage) {
 	if(!defense.word.includes(letter)) {
 		offense.lives += 1;
 	}
+
+	// both players may have died in the transaction, so I'll account for that
 	checkDeath(defense);
 	checkDeath(offense);
+	return 'success';
 }
 
-function getPlayerGuess() {
+// returns the attack message given the current selected target and 
+function getAttackMessage() {
+	message = currPlayer + document.getElementById("guess").value + currTarget;
+//	document.getElementById("message").innerHTML = message;
+	return message;
+}
 
+function setTarget(num) {
+	currTarget = num;
 }
 
 function printState() {
@@ -69,7 +85,6 @@ function printState() {
 	console.log();
 }
 
-/*
 function test() {
 	gameStart("Joan Beans Sammy Oldies Jake Lozenge");
 	printState();
@@ -98,6 +113,5 @@ function test() {
 	updateState('1z2');
 	printState();
 }
-*/
 
-//test();
+test();
