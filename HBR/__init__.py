@@ -82,6 +82,30 @@ def game(game_id):
     return render_template('game.html')
 
 
+@app.route('/get_move/<game_id>', methods=["POST"])
+def get_move(game_id):
+    if 'username' not in session:
+        return 'go away'
+
+    last_move = request.form['last_move']
+
+    move = db.get_move(game_id, ignore=last_move)
+
+    if move is None:
+        return 'wait'
+
+    return move
+
+
+@app.route('/send_move/<game_id>', methods=["POST"])
+def send_move(game_id):
+    move = request.form['move']
+
+    db.add_move(game_id, move, accesses=7)
+
+    return 'Done'
+
+
 if __name__ == '__main__':
     app.debug = True
     app.run()

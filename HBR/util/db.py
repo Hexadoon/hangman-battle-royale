@@ -180,7 +180,7 @@ def add_move(game_id, move, accesses):
 
 
 # TODO: document
-def get_move(game_id):
+def get_move(game_id, ignore=""):
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
 
@@ -193,6 +193,9 @@ def get_move(game_id):
         return None
 
     move, accesses = pair
+
+    if move == ignore:
+        return "wait"
 
     if accesses == 1:
         c.execute('DELETE FROM moves WHERE game_id = ?', (game_id,))
