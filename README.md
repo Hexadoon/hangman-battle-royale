@@ -1,4 +1,4 @@
-# Hangmang Battle Royale
+# Hangman Battle Royale
 
 An online multiplayer guessing game.
 
