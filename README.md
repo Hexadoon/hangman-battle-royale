@@ -8,9 +8,10 @@ Hangman BR is a virtual take on the classic word-guessing game "Hangman". In thi
 
 ## The Team
 
-| Yeji Kim | Joan Chirinos | Sammy Katzman    | Jake Dobbin |
-|:-------:|:--------: | :--------:| :-------: | :------------: |
-| Graphic Artist | Software Developer| Software Developer | Project Manager|
+Graphic Artist Yeji Kim
+Software Developer Joan Chirinos
+Software Developer Sammy Katzman
+Project Manager Jake Dobbin
 
 ## Licensing
 
